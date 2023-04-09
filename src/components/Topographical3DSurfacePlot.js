@@ -2,7 +2,7 @@ import React from 'react';
 import { data } from './data.js';
 import Plot from 'react-plotly.js';
 
-/* Function to 3D modelling of a mountain */
+/* Functional component to 3D modelling of a mountain */
 const Topographical3DPlot = () => {
   // Generate headers for x, y, and z axes
   const headers = Array.from({ length: data[0].length }, (_, i) => i);
@@ -36,13 +36,13 @@ const Topographical3DPlot = () => {
   // Define the configuration for the plot
   const config = {
     toImageButtonOptions: {
-      format: 'svg',
+      format: 'svg', //download image format to SVG
       filename: 'chart',
       width: layout.width,
       height: layout.height,
     },
-    displayModeBar: true,
-    displaylogo: false,
+    displayModeBar: true, // display the mode bar with interactive chart options
+    displaylogo: false, //hide plotly logo
   };
 
   // Rendering plot

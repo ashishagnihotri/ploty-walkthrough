@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Plot from 'react-plotly.js';
 import axios from 'axios';
 
-/* Function to Display bitcoin price from Coibnase website */
+/* Functional component to Display bitcoin price from Coibnase website */
 const TimeSeriesChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    /**
+     * fetchData - fetches Bitcoin prices
+    */
     const fetchData = async () => {
       try {
         // GET request to coinbase for Bitcoin prices, data spaced by 1 hour (3600 seconds)
@@ -32,10 +35,10 @@ const TimeSeriesChart = () => {
     //Mapping data from API to chart
     const plotData = [
       {
-        x: data.map((entry) => entry.x),
-        y: data.map((entry) => entry.open),
+        x: data.map((entry) => entry.x), //map timestamps to data array
+        y: data.map((entry) => entry.open), // map prices to data array
         type: 'scatter', //plot type
-        mode: 'lines',
+        mode: 'lines', //'lines' - data points connected by lines
         line: { color: 'black' },
       },
     ];
@@ -44,8 +47,8 @@ const TimeSeriesChart = () => {
   const layout = {
     title: 'Time Series Chart with Range Sliders for Bitcoin Prices',
     xaxis: {
-      type: 'date',
-      rangeslider: { visible: true }, // Range slider to the x-axis
+      type: 'date', 
+      rangeslider: { visible: true }, // Add range slider to the x-axis
       rangeselector: {
         buttons: [
           //custom slider buttons
@@ -57,13 +60,8 @@ const TimeSeriesChart = () => {
         ],
       },
     },
-    yaxis: { autorange: true },
+    yaxis: { autorange: true }, //automatic y axis range adjustment
   };
-
-    // Configuration object to make the chart responsive
-    const config = {
-      responsive: true,
-    };
 
   // Rendering chart
   return <Plot data={plotData} layout={layout} config={config} />;

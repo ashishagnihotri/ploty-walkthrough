@@ -1,58 +1,72 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-/* Function to Display simple Line chart with 5 randomly generated data points */
+/* Functional component to Display simple Line chart with 5 randomly generated data points */
 const LineChartPlotly = () => {
 
+  /**
+   * xData - array of integers with numbers 1 to 5
+   * randomYData - array of 5 integers with random numbers
+   */
   const xData = Array.from({ length: 5 }, (_, i) => i + 1);
-  
   const randomYData = (length) => Array.from({ length }, () => Math.floor(Math.random() * 100));
 
+
+  /**
+   * x - x axis data
+   * y - y axis data
+   * type - kind of chart needed - 'scatter' makes line chart
+   * mode - whether data points should be connected or not - 'lines' makes them connected
+   * fill - tozeroy would fill the area under the line, tonexty - would fill area to next line graph
+   */
   const data = [
     {
       x: xData,
       y: randomYData(5),
-      type: 'scatter', //plot type
+      type: 'scatter',
       mode: 'lines',
-      line: { color: 'SeaGreen', shape: 'linear' },
+      line: { color: 'SeaGreen'},
       name: 'Line 1',
-      // fill: 'tozeroy', // Added fill property
+      fill: 'tozeroy'
     },
     {
       x: xData,
       y: randomYData(5),
-      type: 'scatter', //plot type
+      type: 'scatter',
       mode: 'lines',
-      line: { color: 'DeepPink', shape: 'linear' },
+      line: { color: 'DeepPink'},
       name: 'Line 2',
-      // fill: 'tonexty', // Added fill property
+      fill: 'tonexty'
     },
     {
       x: xData,
       y: randomYData(5),
-      type: 'scatter', //plot type
+      type: 'scatter',
       mode: 'lines',
-      line: { color: 'Firebrick', shape: 'linear' },
+      line: { color: 'Firebrick'},
       name: 'Line 3',
-      // fill: 'tonexty', // Added fill property
+      fill: 'tonexty'
     },
   ];
 
   const layout = {
     title: 'Line Graph',
     autosize: true,
-    // width: chartSize.width * 0.8,
-    // height: chartSize.height * 0.8,
     margin: { l: 40, r: 20, t: 60, b: 60 },
     dragmode: 'zoom',
     showlegend: true,
   };
 
+/**
+ * scrollZoom - enables zoom using mouse scroll
+ * editable - edit chart axis, title and legend from browser
+ * displayModeBar - hide or show interactive chart bar
+ * toImageButtonOptions - change properties of downloaded chart
+ */
   const config = {
     scrollZoom: true,
     editable: true,
-    displayModeBar: false,
-    responsive: true,
+    displayModeBar: true,
     toImageButtonOptions: {
       format: 'svg',
       filename: 'chart',
@@ -60,6 +74,7 @@ const LineChartPlotly = () => {
       height: layout.height,
     },
   };
+  
   // Rendering chart
   return <Plot data={data} layout={layout} config={config} />;
 };
