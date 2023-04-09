@@ -64,7 +64,7 @@ const TimeSeriesChart = () => {
   };
 
   // Rendering chart
-  return <Plot data={plotData} layout={layout} config={config} />;
+  return <Plot data={plotData} layout={layout}  />;
 };
 
 export default TimeSeriesChart;
